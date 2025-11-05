@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fahad Tariq — Full Stack Developer</title>
+
+  <!-- Thumbnail / social preview -->
+  <meta property="og:title" content="Fahad Tariq — Web & App Developer" />
+  <meta property="og:description" content="Building seamless digital experiences — React, Node & Cloud Solutions" />
+  <meta property="og:image" content="/assets/gt-only-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="gt-only-logo.png" />
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root{
+      /* GroTech Solutions Color Theme */
+      --bg: #0a0f1c; /* Dark blue background */
+      --card: #06090f; /* Card background */
+      --accent-1: #fab207; /* Primary blue - from GroTech */
+      --accent-2: #ed3a3a; /* Purple accent - from GroTech */
+      --accent-3: #1b06d4; /* Cyan accent */
+      --muted: #94a3b8;
+      --glass: rgba(255,255,255,0.05);
+      --glass-2: rgba(255,255,255,0.03);
+      --radius: 20px;
+      --text: #f1f5f9;
+      --success: #10b981;
+      --gradient-primary: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      --gradient-secondary: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+    }
+
+    /* Reset */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(135deg, var(--bg), #07111f);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text)}
+
+    /* Container that centers the card */
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(circle at top right, rgba(37,99,235,0.1), transparent 50%), radial-gradient(circle at bottom left, rgba(124,58,237,0.1), transparent 50%)}
+
+    /* Enhanced Card Design */
+    .card{
+      width:380px;
+      border-radius:28px;
+      background:linear-gradient(165deg, var(--card), rgba(15,23,41,0.9));
+      box-shadow:0 25px 50px -12px rgba(2,6,23,0.6),
+                 0 0 0 1px rgba(255,255,255,0.03),
+                 inset 0 1px 0 rgba(255,255,255,0.05);
+      overflow:hidden;
+      position:relative;
+      transform-style:preserve-3d;
+      perspective:1000px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border:1px solid rgba(255,255,255,0.05);
+      transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* Enhanced Hero Section */
+    .hero{
+      padding:24px 24px 18px;display:flex;gap:14px;align-items:center;
+      background:var(--gradient-primary);
+      background-size:200% 200%;
+      animation:glow 8s ease-in-out infinite;
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform:translateX(-100%);
+      animation:shimmer 3s ease-in-out infinite;
+    }
+    @keyframes glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+    .brand-logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px)}
+    .brand-logo img{width:85%;height:85%;object-fit:contain;border-radius:8px}
+
+    .brand-meta{flex:1;color:rgba(255,255,255,0.95)}
+    .brand-meta .company{font-weight:800;font-size:17px;letter-spacing:0.3px}
+    .brand-meta .slogan{font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px;font-weight:500}
+
+    .discover-badge{font-size:12px;color:rgba(255,255,255,0.9);font-weight:700;background:rgba(255,255,255,0.1);padding:6px 12px;border-radius:8px;backdrop-filter:blur(10px)}
+
+    /* Enhanced Profile Section */
+    .profile{
+      display:flex;flex-direction:column;align-items:center;padding:28px 24px 16px;gap:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      position:relative;
+    }
+    .profile::after{
+      content:'';
+      position:absolute;
+      bottom:0;left:24px;right:24px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    }
+
+    .avatar{
+      width:120px;height:120px;border-radius:24px;overflow:hidden;
+      border:4px solid rgba(255,255,255,0.08);
+      box-shadow:0 20px 40px rgba(2,6,23,0.4),
+                 0 8px 24px rgba(37,99,235,0.2);
+      transform:translateZ(30px);
+      transition:all 0.3s ease;
+      position:relative;
+    }
+    .avatar::before{
+      content:'';
+      position:absolute;
+      inset:-2px;
+      background:var(--gradient-primary);
+      border-radius:26px;
+      z-index:-1;
+      opacity:0.5;
+      filter:blur(8px);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .name{font-weight:800;font-size:24px;background:#fab207;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .role{font-size:14px;color:var(--muted);margin-top:4px;font-weight:600}
+
+    .slogan-text{margin-top:12px;font-size:14px;color:var(--muted);text-align:center;line-height:1.5;padding:0 10px}
+
+    /* Enhanced Skills Section */
+    .skills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:20px 24px}
+    .skill{
+      background:var(--glass);
+      padding:8px 14px;
+      border-radius:12px;
+      font-size:13px;
+      color:var(--text);
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid rgba(255,255,255,0.05);
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:all 0.3s ease;
+      font-weight:500;
+    }
+    .skill:hover{
+      transform:translateY(-2px);
+      background:var(--glass-2);
+      box-shadow:0 8px 20px rgba(37,99,235,0.15);
+    }
+
+    /* Enhanced Progress Bars */
+    .stack{padding:8px 24px 24px;display:grid;gap:14px}
+    .stack .row{display:flex;align-items:center;gap:14px}
+    .stack .label{width:100px;font-size:14px;color:var(--muted);font-weight:500}
+    .progress{
+      flex:1;height:12px;background:var(--glass);border-radius:999px;overflow:hidden;
+      border:1px solid rgba(255,255,255,0.05);
+      box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .progress > i{
+      display:block;height:100%;width:0%;background:var(--gradient-primary);
+      border-radius:999px;
+      animation:fill 2s cubic-bezier(0.4,0,0.2,1) forwards;
+      box-shadow:0 2px 8px rgba(37,99,235,0.3);
+      position:relative;
+      overflow:hidden;
+    }
+    .progress > i::after{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform:translateX(-100%);
+      animation:shimmer 2s ease-in-out infinite;
+    }
+    @keyframes fill{to{width:var(--to)}}
+
+    /* Enhanced Contact Cards */
+    .contacts{display:flex;flex-direction:column;padding:0 24px 24px;gap:12px}
+    .contact{
+      display:flex;gap:14px;align-items:center;padding:14px;
+      border-radius:16px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.05);
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .contact::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;height:1px;
+      background:var(--gradient-primary);
+      opacity:0;
+      transition:opacity 0.3s ease;
+    }
+    .contact:hover{
+      transform:translateX(8px);
+      background:var(--glass-2);
+      border-color:rgba(255,255,255,0.1);
+    }
+    .contact:hover::before{opacity:1}
+
+    .contact a{color:var(--text);text-decoration:none;display:flex;flex:1;align-items:center;justify-content:right}
+    .contact .left{display:flex;gap:12px;align-items:center}
+    .contact i{
+      width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+      border-radius:12px;background:var(--glass);font-size:18px;
+      border:1px solid rgba(255,255,255,0.05);
+      transition:all 0.3s ease;
+    }
+    .contact:hover i{
+      background:var(--gradient-primary);
+      transform:scale(1.1);
+    }
+    .contact .meta{display:flex;flex-direction:column}
+    .contact .meta .title{font-size:18px;font-weight:600}
+    .contact .meta .sub{font-size:12px;color:#fab207;margin-top:2px}
+
+    /* Enhanced CTA Buttons */
+    .cta{display:flex;gap:14px;padding:20px 24px;border-top:1px solid rgba(255,255,255,0.05);align-items:center;background:var(--glass)}
+    .btn{
+      flex:1;padding:14px 20px;border-radius:14px;text-align:center;
+      font-weight:700;color:white;text-decoration:none;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+      font-size:14px;
+    }
+    .btn.primary{
+      background:var(--gradient-primary);
+      box-shadow:0 8px 25px rgba(37,99,235,0.3);
+    }
+    .btn.secondary{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.1);
+      color:var(--text);
+      font-weight:600;
+    }
+    .btn::before{
+      content:'';
+      position:absolute;
+      top:0;left:-100%;
+      width:100%;height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition:left 0.5s ease;
+    }
+    .btn:hover::before{left:100%}
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary:hover{box-shadow:0 12px 30px rgba(37,99,235,0.4)}
+    .btn.secondary:hover{background:var(--glass-2);border-color:rgba(255,255,255,0.2)}
+
+    /* Enhanced Animations */
+    .card:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 35px 60px -12px rgba(2,6,23,0.8),
+                 0 0 0 1px rgba(255,255,255,0.05),
+                 inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .brand-logo, .avatar, .skill, .contact{transition:transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease}
+
+    /* Accessibility */
+    a:focus{outline:3px solid rgba(37,99,235,0.3);outline-offset:2px;border-radius:8px}
+
+    /* Responsive */
+    @media (max-width: 480px){
+      .wrap{padding:1rem}
+      .card{width:100%;max-width:360px}
+      .hero{padding:20px}
+      .profile{padding:24px 20px 16px}
+      .contacts{padding:0 20px 20px}
+      .cta{padding:18px 20px}
+    }
+/* Role Typing Animation Styles */
+.role-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 6px;
+  min-height: 24px;
+}
+
+.role {
+  font-size: 15px;
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cursor {
+  font-weight: 700;
+  color: var(--accent-1);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Typing animation classes */
+.typing {
+  border-right: 2px solid var(--accent-1);
+  animation: typewriter 1.5s steps(20) forwards, blinkCursor 0.8s infinite;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkCursor {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent-1); }
+}
+
+/* Enhanced Contact Cards with Icon Links */
+.contact {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact .left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex: 1;
+}
+
+.contact .right-icon {
+  width: 0px;
+  height: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  border-radius: 12px;
+  background: var(--glass);
+  font-size: 18px;
+  border: 0px solid rgba(255,255,255,0.05);
+  transition: all 0.3s ease;
+  color: var(--text);
+  text-decoration: none;
+  padding-right: 0px;
+}
+
+.contact:hover .right-icon {
+  background: var(--gradient-primary);
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article class="card" role="article" aria-label="Digital business card for Fahad Tariq">
+
+      <!-- Enhanced Hero Section -->
+      <header class="hero">
+        <div class="brand-logo" aria-hidden>
+          <img src="gt-only-logo.png" alt="GroTech Solutions logo">
+        </div>
+        <div class="brand-meta">
+          <div class="company">GroTech Solutions</div>
+          <div class="slogan">Technology Unlimited</div>
+        </div>
+        <div class="discover-badge">DISCOVER</div>
+      </header>
+
+        <!-- Enhanced Profile Section -->
+        <section class="profile">
+        <div class="avatar" aria-hidden>
+            <img src="fahad-tariq.png" alt="Fahad Tariq - Web & App Developer">
+        </div>
+        <div style="text-align:center">
+            <div class="name">Fahad Tariq</div>
+            <div class="role-container">
+            <span class="role" id="typingRole">Full Stack Developer</span>
+            <span class="cursor">|</span>
+            </div>
+            <div class="slogan-text">Building seamless digital experiences with modern technologies and innovative solutions</div>
+        </div>
+        </section>
+
+      <!-- Enhanced Skills Section -->
+      <div class="skills" aria-hidden>
+        <div class="skill"><i class="fab fa-react"></i> React</div>
+        <div class="skill"><i class="fab fa-node-js"></i> Node.js</div>
+        <div class="skill"><i class="fas fa-cloud"></i> Cloud</div>
+        <div class="skill"><i class="fas fa-database"></i> MongoDB</div>
+        <div class="skill"><i class="fas fa-mobile-alt"></i> React Native</div>
+        <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+      </div>
+
+      <!-- Enhanced Tech Stack Progress -->
+      <div class="stack">
+        <div class="row"><div class="label">React & Next.js</div><div class="progress"><i style="--to:94%"></i></div></div>
+        <div class="row"><div class="label">Node.js & Express</div><div class="progress"><i style="--to:89%"></i></div></div>
+        <div class="row"><div class="label">Cloud & DevOps</div><div class="progress"><i style="--to:82%"></i></div></div>
+        <div class="row"><div class="label">Mobile Development</div><div class="progress"><i style="--to:78%"></i></div></div>
+      </div>
+
+    <!-- Enhanced Contact Cards -->
+    <div class="contacts">
+    <div class="contact">
+        <div class="left">
+        <div class="meta">
+            <div class="title">Call</div>
+            <div class="sub">0346-2994190</div>
+        </div>
+        </div>
+        <a href="tel:+923462994190" class="right-icon" aria-label="Call Fahad Tariq">
+        <i class="fa-solid fa-phone"></i>
+        </a>
+    </div>
+
+    <div class="contact">
+        <div class="left">
+        <div class="meta">
+            <div class="title">WhatsApp</div>
+            <div class="sub">0318-0033899</div>
+        </div>
+        </div>
+        <a href="https://wa.me/923180033899" target="_blank" rel="noopener" class="right-icon" aria-label="WhatsApp Fahad Tariq">
+        <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <div class="contact">
+        <div class="left">
+        <div class="meta">
+            <div class="title">Email</div>
+            <div class="sub">thegrotech@gmail.com</div>
+        </div>
+        </div>
+        <a href="mailto:thegrotech@gmail.com" class="right-icon" aria-label="Email Fahad Tariq">
+        <i class="fa-solid fa-envelope"></i>
+        </a>
+    </div>
+
+    <div class="contact">
+        <div class="left">
+        <div class="meta">
+            <div class="title">LinkedIn</div>
+            <div class="sub">/in/fahad-tariq-54a0b5134</div>
+        </div>
+        </div>
+        <a href="https://www.linkedin.com/in/fahad-tariq-54a0b5134/" target="_blank" rel="noopener" class="right-icon" aria-label="View LinkedIn Profile">
+        <i class="fa-brands fa-linkedin"></i>
+        </a>
+    </div>
+
+    <div class="contact">
+        <div class="left">
+        <div class="meta">
+            <div class="title">Website</div>
+            <div class="sub">thegrotech.com</div>
+        </div>
+        </div>
+        <a href="https://thegrotech.com/" target="_blank" rel="noopener" class="right-icon" aria-label="Visit GroTech Website">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+    </div>
+    </div>
+
+      <!-- Enhanced CTA Section -->
+      <div class="cta">
+        <a class="btn primary" href="mailto:thegrotech@gmail.com?subject=Website%20Development%20Inquiry&body=Hello%20Fahad,%20I%20would%20like%20to%20discuss%20a%20project..." rel="noopener">
+          <i class="fas fa-paper-plane" style="margin-right:8px"></i>Hire / Contact
+        </a>
+        <a class="btn secondary" href="/assets/fahad-business-vcard.vcf" download aria-label="Download vCard">
+          <i class="fas fa-download" style="margin-right:8px"></i>Save Card
+        </a>
+      </div>
+
+    </article>
+  </div>
+
+  <!-- Enhanced JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // Animate progress bars with staggered delays
+      const fills = document.querySelectorAll('.progress > i');
+      fills.forEach((el, idx)=>{
+        el.style.animationDelay = (idx * 300) + 'ms';
+      });
+
+      // Enhanced vCard generation
+      const vcfLink = document.querySelector('a[download]');
+      if(vcfLink && !vcfLink.href.includes('fahad-business-vcard.vcf')){
+        const vcard = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Fahad Tariq',
+          'ORG:GroTech Solutions',
+          'TITLE:Web & App Developer',
+          'TEL;TYPE=CELL,VOICE:+923462994190',
+          'TEL;TYPE=CELL,VOICE:+923180033899',
+          'EMAIL;TYPE=INTERNET,WORK:thegrotech@gmail.com',
+          'EMAIL;TYPE=INTERNET,HOME:fahadasif33@gmail.com',
+          'URL;TYPE=WORK:https://thegrotech.com/',
+          'URL;TYPE=LinkedIn:https://www.linkedin.com/in/fahad-tariq-54a0b5134/',
+          'NOTE:Web & App Developer specializing in React, Node.js, and Cloud solutions',
+          'END:VCARD'
+        ].join('\r\n');
+
+        const blob = new Blob([vcard], {type: 'text/vcard;charset=utf-8'});
+        const url = URL.createObjectURL(blob);
+        vcfLink.href = url;
+        
+        // Clean up URL when page unloads
+        window.addEventListener('beforeunload', () => {
+          URL.revokeObjectURL(url);
+        });
+      }
+
+      // Enhanced image error handling
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+          this.style.opacity = '0';
+          setTimeout(() => {
+            const parent = this.parentElement;
+            if (parent.classList.contains('avatar')) {
+              parent.innerHTML = '<i class="fas fa-user" style="font-size: 2rem; color: var(--muted)"></i>';
+            } else if (parent.classList.contains('brand-logo')) {
+              parent.innerHTML = '<i class="fas fa-rocket" style="font-size: 1.5rem; color: white"></i>';
+            }
+          }, 300);
+        });
+      });
+
+      // Add interactive hover effects
+      const card = document.querySelector('.card');
+      let isHovering = false;
+      
+      card.addEventListener('mouseenter', () => {
+        isHovering = true;
+        card.style.transform = 'translateY(-8px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        isHovering = false;
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+    // Role Typing Animation
+function initRoleTyping() {
+  const roles = [
+    "Full Stack Developer",
+    "Frontend Specialist", 
+    "Web & App Developer",
+    "Digital Architect",
+    "UI/UX Designer",
+    "Lead Developer"
+  ];
+  
+  const roleElement = document.getElementById('typingRole');
+  const cursorElement = document.querySelector('.cursor');
+  
+  let currentRoleIndex = 0;
+  let currentCharIndex = 0;
+  let isDeleting = false;
+  let isWaiting = false;
+  
+  function typeRole() {
+    const currentRole = roles[currentRoleIndex];
+    
+    if (isWaiting) {
+      // Wait before starting next cycle
+      setTimeout(() => {
+        isWaiting = false;
+        typeRole();
+      }, 1500);
+      return;
+    }
+    
+    if (isDeleting) {
+      // Deleting text
+      roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
+      currentCharIndex--;
+      
+      if (currentCharIndex === 0) {
+        // Finished deleting, move to next role
+        isDeleting = false;
+        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        setTimeout(typeRole, 500);
+      } else {
+        setTimeout(typeRole, 50);
+      }
+    } else {
+      // Typing text
+      roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
+      currentCharIndex++;
+      
+      if (currentCharIndex === currentRole.length) {
+        // Finished typing, wait then start deleting
+        isWaiting = true;
+        isDeleting = true;
+        setTimeout(typeRole, 2000); // Wait 2 seconds before deleting
+      } else {
+        setTimeout(typeRole, 100);
+      }
+    }
+  }
+  
+  // Enhanced typing effect with smooth transitions
+  function enhancedTypeRole() {
+    const currentRole = roles[currentRoleIndex];
+    
+    if (isDeleting) {
+      // Smooth deletion
+      roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
+      currentCharIndex--;
+      
+      if (currentCharIndex === 0) {
+        isDeleting = false;
+        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
+        
+        // Add a subtle fade effect between roles
+        roleElement.style.opacity = '0';
+        setTimeout(() => {
+          roleElement.style.opacity = '1';
+          setTimeout(typeRole, 300);
+        }, 200);
+      } else {
+        setTimeout(typeRole, Math.random() * 50 + 30); // Random speed for natural feel
+      }
+    } else {
+      // Smooth typing with variable speed
+      roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
+      currentCharIndex++;
+      
+      if (currentCharIndex === currentRole.length) {
+        // Pause at the end before deleting
+        isDeleting = true;
+        setTimeout(typeRole, 1500);
+      } else {
+        // Variable typing speed for more natural effect
+        const speed = Math.random() * 80 + 50;
+        setTimeout(typeRole, speed);
+      }
+    }
+  }
+  
+  // Start the typing animation after a short delay
+  setTimeout(() => {
+    typeRole();
+  }, 1000);
+}
+
+// Call this in your DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', () => {
+  initRoleTyping();
+  // ... your other initialization code
+});
+  </script>
+</body>
+</html>
