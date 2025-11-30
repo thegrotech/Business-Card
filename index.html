@@ -668,6 +668,36 @@ document.addEventListener('DOMContentLoaded', () => {
   initRoleTyping();
   // ... your other initialization code
 });
+// Add PDF download functionality
+document.addEventListener('DOMContentLoaded', () => {
+  // ... your existing code ...
+  
+  // PDF download handler
+  const saveCardBtn = document.querySelector('.btn.secondary');
+  if (saveCardBtn) {
+    saveCardBtn.addEventListener('click', (e) => {
+      // If the href is already set to PDF, let the native download work
+      if (!saveCardBtn.href.includes('.pdf')) {
+        e.preventDefault();
+        
+        // Create a temporary link for download
+        const link = document.createElement('a');
+        link.href = 'fahad-business-card.pdf'; // Make sure this matches your PDF filename
+        link.download = 'Fahad_Tariq_Business_Card.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Optional: Show download confirmation
+        const originalText = saveCardBtn.innerHTML;
+        saveCardBtn.innerHTML = '<i class="fas fa-check" style="margin-right:8px"></i>Downloaded!';
+        setTimeout(() => {
+          saveCardBtn.innerHTML = originalText;
+        }, 2000);
+      }
+    });
+  }
+});
   </script>
 </body>
 </html>
