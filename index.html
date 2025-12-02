@@ -3,701 +3,1420 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fahad Tariq — Full Stack Developer</title>
+  <title>Fahad Tariq — Full Stack Developer & Tech Lead</title>
 
   <!-- Thumbnail / social preview -->
-  <meta property="og:title" content="Fahad Tariq — Web & App Developer" />
-  <meta property="og:description" content="Building seamless digital experiences — React, Node & Cloud Solutions" />
+  <meta property="og:title" content="Fahad Tariq — Full Stack Developer" />
+  <meta property="og:description" content="MERN | MEAN | Kotlin PWA | Cloud Solutions" />
   <meta property="og:image" content="/assets/gt-only-logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="gt-only-logo.png" />
 
   <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root{
-      /* GroTech Solutions Color Theme */
-      --bg: #0a0f1c; /* Dark blue background */
-      --card: #06090f; /* Card background */
-      --accent-1: #fab207; /* Primary blue - from GroTech */
-      --accent-2: #ed3a3a; /* Purple accent - from GroTech */
-      --accent-3: #1b06d4; /* Cyan accent */
-      --muted: #94a3b8;
-      --glass: rgba(255,255,255,0.05);
-      --glass-2: rgba(255,255,255,0.03);
-      --radius: 20px;
-      --text: #f1f5f9;
-      --success: #10b981;
+      /* Enhanced Tech Theme with Golden Yellow */
+      --bg: #0a0a0f;
+      --card: #0d1117;
+      --accent-1: #00d4ff;           /* Cyber cyan */
+      --accent-2: #7b61ff;           /* Electric purple */
+      --accent-3: #00ff88;           /* Matrix green */
+      --accent-4: #ff4d8d;           /* Neon pink */
+      --gold: #ffd200;               /* Your golden yellow */
+      --muted: #8b949e;
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.05);
+      --radius: 16px;
+      --text: #f0f6fc;
+      --success: #00ff88;
+      --terminal: #00ff88;
       --gradient-primary: linear-gradient(135deg, var(--accent-1), var(--accent-2));
-      --gradient-secondary: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+      --gradient-secondary: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+      --gradient-gold: linear-gradient(135deg, var(--gold), #ffed4e);
+      --gradient-terminal: linear-gradient(90deg, var(--accent-1), var(--gold));
+      --neon-glow: 0 0 15px rgba(0, 212, 255, 0.5);
+      --gold-glow: 0 0 20px rgba(255, 210, 0, 0.4);
     }
 
-    /* Reset */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:linear-gradient(135deg, var(--bg), #07111f);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;color:var(--text)}
+    /* Reset & Base */
+    *{box-sizing:border-box; margin:0; padding:0;}
+    html,body{
+      height:100%;
+      margin:0;
+      background: radial-gradient(ellipse at top, #0a0a0f 0%, #000 70%);
+      font-family:'Inter', system-ui, -apple-system, sans-serif;
+      color:var(--text);
+      overflow-x:hidden;
+    }
 
-    /* Container that centers the card */
-    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(circle at top right, rgba(37,99,235,0.1), transparent 50%), radial-gradient(circle at bottom left, rgba(124,58,237,0.1), transparent 50%)}
+    /* Golden Grid Background */
+    .matrix-bg{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+      opacity:0.15;
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(255,210,0,0.2) 50%, transparent 51%) 0 0 / 60px 60px,
+        linear-gradient(0deg, transparent 49%, rgba(255,210,0,0.1) 50%, transparent 51%) 0 0 / 60px 60px;
+      animation:matrix 30s linear infinite;
+    }
 
-    /* Enhanced Card Design */
+    @keyframes matrix{
+      0%{transform:translateY(0) rotate(0deg);}
+      100%{transform:translateY(60px) rotate(0.5deg);}
+    }
+
+    /* Floating Golden Particles */
+    .gold-particles{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:-1;
+    }
+
+    .gold-particle{
+      position:absolute;
+      background:var(--gold);
+      border-radius:50%;
+      opacity:0;
+      animation:float 20s infinite linear;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(100vh) scale(0); opacity:0;}
+      10%{opacity:0.3;}
+      90%{opacity:0.3;}
+      100%{transform:translateY(-100px) scale(1); opacity:0;}
+    }
+
+    /* Container */
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:2rem;
+      position:relative;
+    }
+
+    /* Enhanced Tech Card */
     .card{
-      width:380px;
-      border-radius:28px;
-      background:linear-gradient(165deg, var(--card), rgba(15,23,41,0.9));
-      box-shadow:0 25px 50px -12px rgba(2,6,23,0.6),
-                 0 0 0 1px rgba(255,255,255,0.03),
-                 inset 0 1px 0 rgba(255,255,255,0.05);
+      width:450px;
+      border-radius:24px;
+      background:var(--card);
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(0, 212, 255, 0.1),
+        0 0 0 2px rgba(255, 210, 0, 0.1),
+        0 0 50px rgba(0, 212, 255, 0.15),
+        inset 0 1px 0 rgba(255,255,255,0.1);
       overflow:hidden;
       position:relative;
-      transform-style:preserve-3d;
-      perspective:1000px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter:blur(20px);
       border:1px solid rgba(255,255,255,0.05);
       transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+      font-family:'Inter', sans-serif;
+      z-index:10;
     }
 
-    /* Enhanced Hero Section */
-    .hero{
-      padding:24px 24px 18px;display:flex;gap:14px;align-items:center;
-      background:var(--gradient-primary);
-      background-size:200% 200%;
-      animation:glow 8s ease-in-out infinite;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero::before{
-      content:'';
-      position:absolute;
-      top:0;left:0;right:0;bottom:0;
-      background:linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-      transform:translateX(-100%);
-      animation:shimmer 3s ease-in-out infinite;
-    }
-    @keyframes glow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-
-    .brand-logo{width:52px;height:52px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px)}
-    .brand-logo img{width:85%;height:85%;object-fit:contain;border-radius:8px}
-
-    .brand-meta{flex:1;color:rgba(255,255,255,0.95)}
-    .brand-meta .company{font-weight:800;font-size:17px;letter-spacing:0.3px}
-    .brand-meta .slogan{font-size:12px;color:rgba(255,255,255,0.8);margin-top:4px;font-weight:500}
-
-    .discover-badge{font-size:12px;color:rgba(255,255,255,0.9);font-weight:700;background:rgba(255,255,255,0.1);padding:6px 12px;border-radius:8px;backdrop-filter:blur(10px)}
-
-    /* Enhanced Profile Section */
-    .profile{
-      display:flex;flex-direction:column;align-items:center;padding:28px 24px 16px;gap:16px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      position:relative;
-    }
-    .profile::after{
-      content:'';
-      position:absolute;
-      bottom:0;left:24px;right:24px;
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    }
-
-    .avatar{
-      width:120px;height:120px;border-radius:24px;overflow:hidden;
-      border:4px solid rgba(255,255,255,0.08);
-      box-shadow:0 20px 40px rgba(2,6,23,0.4),
-                 0 8px 24px rgba(37,99,235,0.2);
-      transform:translateZ(30px);
-      transition:all 0.3s ease;
-      position:relative;
-    }
-    .avatar::before{
+    .card::before{
       content:'';
       position:absolute;
       inset:-2px;
-      background:var(--gradient-primary);
+      background:linear-gradient(45deg, var(--accent-1), var(--gold), var(--accent-2));
       border-radius:26px;
       z-index:-1;
-      opacity:0.5;
-      filter:blur(8px);
+      opacity:0.15;
+      filter:blur(20px);
     }
-    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
 
-    .name{font-weight:800;font-size:24px;background:#fab207;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .role{font-size:14px;color:var(--muted);margin-top:4px;font-weight:600}
-
-    .slogan-text{margin-top:12px;font-size:14px;color:var(--muted);text-align:center;line-height:1.5;padding:0 10px}
-
-    /* Enhanced Skills Section */
-    .skills{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;padding:20px 24px}
-    .skill{
-      background:var(--glass);
-      padding:8px 14px;
-      border-radius:12px;
-      font-size:13px;
-      color:var(--text);
-      display:inline-flex;
-      gap:8px;
+    /* Enhanced Terminal Header */
+    .terminal-header{
+      background:linear-gradient(135deg, #161b22, #0d1117);
+      padding:20px 24px;
+      border-bottom:1px solid rgba(255, 210, 0, 0.3);
+      position:relative;
+      display:flex;
       align-items:center;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      transition:all 0.3s ease;
-      font-weight:500;
-    }
-    .skill:hover{
-      transform:translateY(-2px);
-      background:var(--glass-2);
-      box-shadow:0 8px 20px rgba(37,99,235,0.15);
+      gap:12px;
     }
 
-    /* Enhanced Progress Bars */
-    .stack{padding:8px 24px 24px;display:grid;gap:14px}
-    .stack .row{display:flex;align-items:center;gap:14px}
-    .stack .label{width:100px;font-size:14px;color:var(--muted);font-weight:500}
-    .progress{
-      flex:1;height:12px;background:var(--glass);border-radius:999px;overflow:hidden;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .progress > i{
-      display:block;height:100%;width:0%;background:var(--gradient-primary);
-      border-radius:999px;
-      animation:fill 2s cubic-bezier(0.4,0,0.2,1) forwards;
-      box-shadow:0 2px 8px rgba(37,99,235,0.3);
-      position:relative;
-      overflow:hidden;
-    }
-    .progress > i::after{
+    .terminal-header::after{
       content:'';
       position:absolute;
-      top:0;left:0;right:0;bottom:0;
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform:translateX(-100%);
-      animation:shimmer 2s ease-in-out infinite;
+      bottom:0;
+      left:0;
+      right:0;
+      height:2px;
+      background:var(--gradient-gold);
+      box-shadow:var(--gold-glow);
     }
-    @keyframes fill{to{width:var(--to)}}
 
-    /* Enhanced Contact Cards */
-    .contacts{display:flex;flex-direction:column;padding:0 24px 24px;gap:12px}
-    .contact{
-      display:flex;gap:14px;align-items:center;padding:14px;
-      border-radius:16px;
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.05);
-      transition:all 0.3s ease;
-      position:relative;
-      overflow:hidden;
+    .terminal-dots{
+      display:flex;
+      gap:8px;
     }
-    .contact::before{
+
+    .terminal-dot{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      transition:all 0.3s ease;
+    }
+
+    .terminal-dot:hover{
+      transform:scale(1.2);
+    }
+
+    .dot-red{background:#ff5f56;}
+    .dot-yellow{background:#ffbd2e;}
+    .dot-green{background:#27ca3f;}
+
+    .terminal-title{
+      font-family:'JetBrains Mono', monospace;
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:0.5px;
+      flex:1;
+    }
+
+    .terminal-title::before{
+      content:'$ ';
+      color:var(--gold);
+      font-weight:bold;
+    }
+
+    /* Enhanced Profile Section */
+    .profile-grid{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:24px;
+      padding:28px 24px;
+      align-items:center;
+      background:linear-gradient(180deg, rgba(0,212,255,0.02), transparent);
+      position:relative;
+    }
+
+    .profile-grid::before{
       content:'';
       position:absolute;
-      top:0;left:0;right:0;height:1px;
-      background:var(--gradient-primary);
-      opacity:0;
-      transition:opacity 0.3s ease;
+      top:0;
+      left:24px;
+      right:24px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, var(--gold), var(--accent-1), transparent);
+      opacity:0.5;
     }
-    .contact:hover{
-      transform:translateX(8px);
-      background:var(--glass-2);
-      border-color:rgba(255,255,255,0.1);
-    }
-    .contact:hover::before{opacity:1}
 
-    .contact a{color:var(--text);text-decoration:none;display:flex;flex:1;align-items:center;justify-content:right}
-    .contact .left{display:flex;gap:12px;align-items:center}
-    .contact i{
-      width:44px;height:44px;display:flex;align-items:center;justify-content:center;
-      border-radius:12px;background:var(--glass);font-size:18px;
-      border:1px solid rgba(255,255,255,0.05);
-      transition:all 0.3s ease;
-    }
-    .contact:hover i{
-      background:var(--gradient-primary);
-      transform:scale(1.1);
-    }
-    .contact .meta{display:flex;flex-direction:column}
-    .contact .meta .title{font-size:18px;font-weight:600}
-    .contact .meta .sub{font-size:12px;color:#fab207;margin-top:2px}
-
-    /* Enhanced CTA Buttons */
-    .cta{display:flex;gap:14px;padding:20px 24px;border-top:1px solid rgba(255,255,255,0.05);align-items:center;background:var(--glass)}
-    .btn{
-      flex:1;padding:14px 20px;border-radius:14px;text-align:center;
-      font-weight:700;color:white;text-decoration:none;
-      transition:all 0.3s ease;
-      position:relative;
+    .gold-avatar{
+      width:130px;
+      height:130px;
+      border-radius:22px;
       overflow:hidden;
+      position:relative;
+      border:3px solid transparent;
+      background:linear-gradient(var(--card), var(--card)) padding-box,
+                linear-gradient(45deg, var(--gold), var(--accent-1), var(--accent-2)) border-box;
+      box-shadow:0 0 30px rgba(255, 210, 0, 0.3),
+                 inset 0 0 20px rgba(255, 210, 0, 0.1);
+      animation:gold-pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes gold-pulse{
+      0%,100%{box-shadow:0 0 20px rgba(255, 210, 0, 0.3);}
+      50%{box-shadow:0 0 40px rgba(255, 210, 0, 0.5);}
+    }
+
+    .gold-avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:brightness(1.1) contrast(1.1);
+    }
+
+    .gold-avatar::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(45deg, transparent 40%, rgba(255,210,0,0.2) 50%, transparent 60%);
+      animation:gold-scan 4s linear infinite;
+      mix-blend-mode:screen;
+    }
+
+    @keyframes gold-scan{
+      0%{transform:translateY(-100%) rotate(15deg);}
+      100%{transform:translateY(100%) rotate(15deg);}
+    }
+
+    .name{
+      font-size:30px;
+      font-weight:800;
+      background:var(--gradient-gold);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      margin-bottom:8px;
+      letter-spacing:-0.5px;
+      text-shadow:0 2px 10px rgba(255,210,0,0.2);
+    }
+
+    .role-terminal{
+      font-family:'JetBrains Mono', monospace;
       font-size:14px;
+      color:var(--gold);
+      margin-bottom:12px;
+      min-height:24px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-weight:500;
+      justify-content: center;
     }
-    .btn.primary{
-      background:var(--gradient-primary);
-      box-shadow:0 8px 25px rgba(37,99,235,0.3);
+
+    .cursor{
+      animation:blink 1s infinite;
+      color:var(--gold);
     }
-    .btn.secondary{
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.1);
+
+    @keyframes blink{
+      0%,50%{opacity:1;}
+      51%,100%{opacity:0;}
+    }
+
+    .tech-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:12px;
+    }
+
+    .tech-tag{
+      background:rgba(255,210,0,0.1);
+      color:var(--gold);
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:11px;
+      font-weight:600;
+      border:1px solid rgba(255,210,0,0.3);
+      transition:all 0.3s ease;
+    }
+
+    .tech-tag:hover{
+      background:rgba(255,210,0,0.2);
+      transform:translateY(-2px);
+      box-shadow:var(--gold-glow);
+    }
+
+    .bio{
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+      margin-top:12px;
+    }
+
+    .bio strong{
+      color:var(--gold);
+    }
+
+    /* Tech Stack Section */
+    .tech-stack-section{
+      padding:0 24px 24px;
+    }
+
+    .section-title{
+      font-family:'JetBrains Mono', monospace;
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:20px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+
+    .section-title::before{
+      content:'</>';
+      color:var(--gold);
+      font-weight:bold;
+    }
+
+    /* Tech Stack Grid with Your Technologies */
+    .stack-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+      margin-bottom:24px;
+    }
+
+    .stack-item{
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:14px;
+      padding:16px 12px;
+      text-align:center;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .stack-item::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:3px;
+      background:var(--gradient-gold);
+      transform:scaleX(0);
+      transition:transform 0.3s ease;
+    }
+
+    .stack-item:hover{
+      transform:translateY(-4px);
+      background:rgba(255,210,0,0.05);
+      border-color:var(--gold);
+      box-shadow:var(--gold-glow);
+    }
+
+    .stack-item:hover::before{
+      transform:scaleX(1);
+    }
+
+    .stack-item i{
+      font-size:28px;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .stack-label{
+      font-size:12px;
       color:var(--text);
       font-weight:600;
+      margin-bottom:4px;
     }
-    .btn::before{
+
+    .stack-desc{
+      font-size:10px;
+      color:var(--muted);
+      opacity:0.8;
+    }
+
+    /* Color-coded tech items */
+    .mern{color:#00d4ff;}
+    .mern i{color:#00d4ff;}
+    
+    .mean{color:#ff4d8d;}
+    .mean i{color:#ff4d8d;}
+    
+    .frontend{color:#00ff88;}
+    .frontend i{color:#00ff88;}
+    
+    .kotlin{color:#7b61ff;}
+    .kotlin i{color:#7b61ff;}
+    
+    .sql{color:#ffd200;}
+    .sql i{color:#ffd200;}
+    
+    .postgres{color:#00bfff;}
+    .postgres i{color:#00bfff;}
+
+    /* Skills Progress */
+    .skills-progress{
+      display:grid;
+      gap:12px;
+    }
+
+    .skill-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .skill-name{
+      width:120px;
+      font-size:12px;
+      color:var(--muted);
+      font-family:'JetBrains Mono', monospace;
+    }
+
+    .progress-bar{
+      flex:1;
+      height:8px;
+      background:rgba(255,255,255,0.05);
+      border-radius:10px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .progress-fill{
+      height:100%;
+      background:var(--gradient-gold);
+      border-radius:10px;
+      width:0;
+      animation:progress-fill 1.5s ease-out forwards;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .progress-fill::after{
       content:'';
       position:absolute;
-      top:0;left:-100%;
-      width:100%;height:100%;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
       background:linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition:left 0.5s ease;
-    }
-    .btn:hover::before{left:100%}
-    .btn:hover{transform:translateY(-2px)}
-    .btn.primary:hover{box-shadow:0 12px 30px rgba(37,99,235,0.4)}
-    .btn.secondary:hover{background:var(--glass-2);border-color:rgba(255,255,255,0.2)}
-
-    /* Enhanced Animations */
-    .card:hover{
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 35px 60px -12px rgba(2,6,23,0.8),
-                 0 0 0 1px rgba(255,255,255,0.05),
-                 inset 0 1px 0 rgba(255,255,255,0.08);
+      animation:shimmer 2s infinite;
     }
 
-    .brand-logo, .avatar, .skill, .contact{transition:transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease}
+    @keyframes progress-fill{
+      to{width:var(--progress);}
+    }
+
+    @keyframes shimmer{
+      0%{transform:translateX(-100%);}
+      100%{transform:translateX(100%);}
+    }
+
+    /* Enhanced Social Links Grid */
+    .social-grid{
+      padding:0 24px 24px;
+    }
+
+    .social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    }
+
+    .social-link{
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.05);
+      border-radius:12px;
+      padding:16px;
+      text-align:center;
+      transition:all 0.3s ease;
+      position:relative;
+      text-decoration:none;
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100px;
+    }
+
+    .social-link:hover{
+      background:rgba(255,210,0,0.05);
+      border-color:var(--gold);
+      transform:translateY(-2px);
+      box-shadow:var(--gold-glow);
+    }
+
+    .social-icon{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:12px;
+      font-size:18px;
+      background:rgba(255,210,0,0.1);
+      color:var(--gold);
+      transition:all 0.3s ease;
+    }
+
+    .social-link:hover .social-icon{
+      transform:scale(1.1) rotate(5deg);
+      background:var(--gradient-gold);
+      color:#000;
+    }
+
+    .social-label{
+      font-size:11px;
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:4px;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+
+    .social-name{
+      font-size:10px;
+      color:var(--text);
+      opacity:0.9;
+      word-break:break-word;
+    }
+
+    /* Code Footer with Status */
+    .code-footer{
+      background:linear-gradient(90deg, rgba(0,0,0,0.3), transparent);
+      padding:18px 24px;
+      border-top:1px solid rgba(255,210,0,0.1);
+      font-family:'JetBrains Mono', monospace;
+      font-size:12px;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:relative;
+    }
+
+    .code-footer::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:1px;
+      background:var(--gradient-gold);
+      opacity:0.3;
+    }
+
+    .code-line{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .code-var{
+      color:var(--accent-1);
+    }
+
+    .code-value{
+      color:var(--gold);
+    }
+
+    .status-indicator{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .status-dot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--success);
+      animation:pulse 2s infinite;
+      position:relative;
+    }
+
+    .status-dot::after{
+      content:'';
+      position:absolute;
+      inset:-4px;
+      border-radius:50%;
+      background:var(--success);
+      opacity:0.3;
+      animation:pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:1;}
+      50%{opacity:0.6;}
+    }
+
+    @keyframes pulse-ring{
+      0%{transform:scale(0.8); opacity:0.3;}
+      100%{transform:scale(1.5); opacity:0;}
+    }
+
+    .status-text{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px){
+      .wrap{padding:1rem;}
+      .card{width:100%;max-width:380px;}
+      .profile-grid{grid-template-columns:1fr;text-align:center;}
+      .gold-avatar{margin:0 auto;}
+      .stack-grid{grid-template-columns:repeat(2, 1fr);}
+      .social-links{grid-template-columns:repeat(2, 1fr);}
+      .code-footer{flex-direction:column;gap:12px;align-items:flex-start;}
+    }
 
     /* Accessibility */
-    a:focus{outline:3px solid rgba(37,99,235,0.3);outline-offset:2px;border-radius:8px}
-
-    /* Responsive */
-    @media (max-width: 480px){
-      .wrap{padding:1rem}
-      .card{width:100%;max-width:360px}
-      .hero{padding:20px}
-      .profile{padding:24px 20px 16px}
-      .contacts{padding:0 20px 20px}
-      .cta{padding:18px 20px}
+    a:focus-visible{
+      outline:2px solid var(--gold);
+      outline-offset:2px;
+      border-radius:8px;
     }
-/* Role Typing Animation Styles */
-.role-container {
-  position: relative;
-  display: inline-block;
-  margin-top: 6px;
-  min-height: 24px;
-}
 
-.role {
-  font-size: 15px;
-  color: var(--muted);
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
+    /* Print Styles */
+    @media print{
+      .matrix-bg, .gold-particles{display:none;}
+      .card{box-shadow:none;border:2px solid #000;}
+      .gold-avatar{border:2px solid #000;}
+    }
+    /* Color-coded tech items */
+    .mongo{color:#10aa50;}
+    .mongo i{color:#10aa50;}
 
-.cursor {
-  font-weight: 700;
-  color: var(--accent-1);
-  animation: blink 1s infinite;
-  margin-left: 2px;
-}
+    .mern{color:#00d4ff;}
+    .mern i{color:#00d4ff;}
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
+    .mean{color:#ff4d8d;}
+    .mean i{color:#ff4d8d;}
 
-/* Typing animation classes */
-.typing {
-  border-right: 2px solid var(--accent-1);
-  animation: typewriter 1.5s steps(20) forwards, blinkCursor 0.8s infinite;
-}
+    .frontend{color:#e34c26;}
+    .frontend i{color:#f06529;}
 
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
-}
+    .kotlin{color:#7b61ff;}
+    .kotlin i{color:#7b61ff;}
 
-@keyframes blinkCursor {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--accent-1); }
-}
+    .sql{color:#ffd200;}
+    .sql i{color:#ffd200;}
 
-/* Enhanced Contact Cards with Icon Links */
-.contact {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  padding: 14px;
-  border-radius: 16px;
-  background: var(--glass);
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
+    .postgres{color:#00bfff;}
+    .postgres i{color:#00bfff;}
 
-.contact .left {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex: 1;
-}
+    .cloudbase{color:#ff9500;}
+    .cloudbase i{color:#ff9500;}
 
-.contact .right-icon {
-  width: 0px;
-  height: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: right;
-  border-radius: 12px;
-  background: var(--glass);
-  font-size: 18px;
-  border: 0px solid rgba(255,255,255,0.05);
-  transition: all 0.3s ease;
-  color: var(--text);
-  text-decoration: none;
-  padding-right: 0px;
-}
-
-/* Remove focus outline for a cleaner look */
-.contact .right-icon:focus {
-  outline: none;
-}
-
-.contact:hover .right-icon {
-  background: var(--gradient-primary);
-  transform: scale(1.1);
-}
-
+    .cloud{color:#9d4edd;}
+    .cloud i{color:#9d4edd;}
   </style>
 </head>
 <body>
+  <!-- Animated Golden Grid -->
+  <div class="matrix-bg"></div>
+  
+  <!-- Floating Particles -->
+  <div class="gold-particles" id="particles"></div>
+  
   <div class="wrap">
-    <article class="card" role="article" aria-label="Digital business card for Fahad Tariq">
+    <article class="card" role="article" aria-label="Tech business card for Fahad Tariq">
+      <!-- Terminal Header -->
+      <header class="terminal-header">
+        <div class="terminal-dots">
+          <div class="terminal-dot dot-red"></div>
+          <div class="terminal-dot dot-yellow"></div>
+          <div class="terminal-dot dot-green"></div>
+        </div>
 
-      <!-- Enhanced Hero Section -->
-      <header class="hero">
-        <div class="brand-logo" aria-hidden>
-          <img src="gt-only-logo.png" alt="GroTech Solutions logo">
-        </div>
-        <div class="brand-meta">
-          <div class="company">GroTech Solutions</div>
-          <div class="slogan">Technology Unlimited</div>
-        </div>
-        <div class="discover-badge">DISCOVER</div>
       </header>
 
-        <!-- Enhanced Profile Section -->
-        <section class="profile">
-        <div class="avatar" aria-hidden>
-            <img src="fahad-tariq.png" alt="Fahad Tariq - Web & App Developer">
+      <!-- Enhanced Profile with Golden Accents -->
+      <section class="profile-grid">
+        <div class="gold-avatar" aria-hidden>
+          <img src="fahad-tariq.png" alt="Fahad Tariq - Full Stack Developer" loading="lazy">
         </div>
-        <div style="text-align:center">
-            <div class="name">Fahad Tariq</div>
-            <div class="role-container">
-            <span class="role" id="typingRole">Full Stack Developer</span>
-            <span class="cursor">|</span>
+        <div>
+          <div class="name">Fahad Tariq</div>
+          <div class="role-terminal">
+            <span id="typingRole">Full Stack Developer</span>
+            <span class="cursor">█</span>
+          </div>
+          
+          <div class="tech-tags">
+            <span class="tech-tag">MERN Stack</span>
+            <span class="tech-tag">MEAN Stack</span>
+            <span class="tech-tag">Kotlin PWA Apps</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">SQL/PostgreSQL</span>
+            <span class="tech-tag">Cloud Native</span>
+          </div>
+          
+          <p class="bio">
+            Building <strong>scalable applications</strong> with modern stacks. 
+            Specialized in <strong>MERN/MEAN</strong>, <strong>Kotlin PWAs</strong>, 
+            and <strong>database solutions</strong>. Currently expanding expertise 
+            in cloud architectures.
+          </p>
+        </div>
+      </section>
+
+        <!-- Tech Stack Section -->
+        <div class="tech-stack-section">
+        <div class="section-title">Tech Stack Mastery</div>
+        
+        <div class="stack-grid">
+            <!-- MongoDB -->
+            <div class="stack-item mongo" data-progress="95">
+            <i class="fas fa-database"></i>
+            <div class="stack-label">MongoDB</div>
+            <div class="stack-desc">NoSQL Database</div>
             </div>
-            <div class="slogan-text">Building seamless digital experiences with modern technologies and innovative solutions</div>
+            
+            <!-- MERN Stack -->
+            <div class="stack-item mern" data-progress="95">
+            <i class="fab fa-node-js"></i>
+            <div class="stack-label">MERN Stack</div>
+            <div class="stack-desc">MongoDB, Express, React, Node.js</div>
+            </div>
+            
+            <!-- MEAN Stack -->
+            <div class="stack-item mean" data-progress="90">
+            <i class="fab fa-angular"></i>
+            <div class="stack-label">MEAN Stack</div>
+            <div class="stack-desc">MongoDB, Express, Angular, Node.js</div>
+            </div>
+            
+            <!-- Frontend -->
+            <div class="stack-item frontend" data-progress="98">
+            <i class="fab fa-html5"></i>
+            <div class="stack-label">Frontend Trio</div>
+            <div class="stack-desc">HTML5, CSS3, JavaScript ES6+</div>
+            </div>
+            
+            <!-- Kotlin PWA -->
+            <div class="stack-item kotlin" data-progress="85">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="stack-label">Kotlin PWA</div>
+            <div class="stack-desc">Progressive Web Apps</div>
+            </div>
+            
+            <!-- SQL -->
+            <div class="stack-item sql" data-progress="92">
+            <i class="fas fa-database"></i>
+            <div class="stack-label">SQL Databases</div>
+            <div class="stack-desc">MySQL, SQL Server</div>
+            </div>
+            
+            <!-- PostgreSQL -->
+            <div class="stack-item postgres" data-progress="88">
+            <i class="fas fa-database"></i>
+            <div class="stack-label">PostgreSQL</div>
+            <div class="stack-desc">Advanced Database</div>
+            </div>
+            
+            <!-- Cloudbase Database -->
+            <div class="stack-item cloudbase" data-progress="90">
+            <i class="fas fa-cloud"></i>
+            <div class="stack-label">Cloudbase DB</div>
+            <div class="stack-desc">Firebase, AWS, Azure</div>
+            </div>
+            
+            <!-- Cloud Solutions -->
+            <div class="stack-item cloud" data-progress="87">
+            <i class="fas fa-server"></i>
+            <div class="stack-label">Cloud Solutions</div>
+            <div class="stack-desc">AWS, Azure, GCP</div>
+            </div>
         </div>
-        </section>
 
-      <!-- Enhanced Skills Section -->
-      <div class="skills" aria-hidden>
-        <div class="skill"><i class="fab fa-react"></i> React</div>
-        <div class="skill"><i class="fab fa-node-js"></i> Node.js</div>
-        <div class="skill"><i class="fas fa-cloud"></i> Cloud</div>
-        <div class="skill"><i class="fas fa-database"></i> MongoDB</div>
-        <div class="skill"><i class="fas fa-mobile-alt"></i> React Native</div>
-        <div class="skill"><i class="fab fa-js"></i> JavaScript</div>
+        <!-- Updated Skills Progress Visualization -->
+        <div class="skills-progress">
+            <div class="skill-row">
+            <div class="skill-name">MONGODB</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:95%"></div>
+            </div>
+            </div>
+            
+            <div class="skill-row">
+            <div class="skill-name">CLOUDBASE DB</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:90%"></div>
+            </div>
+            </div>
+            
+            <div class="skill-row">
+            <div class="skill-name">REACT/ANGULAR</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:96%"></div>
+            </div>
+            </div>
+            
+            <div class="skill-row">
+            <div class="skill-name">NODE.JS</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:94%"></div>
+            </div>
+            </div>
+            
+            <div class="skill-row">
+            <div class="skill-name">SQL/POSTGRES</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:90%"></div>
+            </div>
+            </div>
+            
+            <div class="skill-row">
+            <div class="skill-name">KOTLIN PWA</div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="--progress:85%"></div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+      <!-- Complete Social Links Grid -->
+      <div class="social-grid">
+        <div class="section-title">Connect & Collaborate</div>
+        
+        <div class="social-links">
+          <!-- Primary Contacts -->
+          <a href="https://github.com/thegrotech" target="_blank" class="social-link" aria-label="GitHub Profile">
+            <div class="social-icon">
+              <i class="fab fa-github"></i>
+            </div>
+            <div class="social-label">GitHub</div>
+            <div class="social-name">@thegrotech</div>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/fahad-tariq-54a0b5134/" target="_blank" class="social-link" aria-label="LinkedIn Profile">
+            <div class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div class="social-label">LinkedIn</div>
+            <div class="social-name">Fahad Tariq</div>
+          </a>
+          
+          <a href="https://thegrotech.com/" target="_blank" class="social-link" aria-label="Website">
+            <div class="social-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div class="social-label">Website</div>
+            <div class="social-name">thegrotech.com</div>
+          </a>
+          
+          <a href="mailto:thegrotech@gmail.com" class="social-link" aria-label="Email">
+            <div class="social-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="social-label">Email</div>
+            <div class="social-name">thegrotech@gmail.com</div>
+          </a>
+          
+          <!-- Secondary Contacts -->
+          <a href="tel:+923462994190" class="social-link" aria-label="Phone">
+            <div class="social-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="social-label">Phone</div>
+            <div class="social-name">+92 346 2994190</div>
+          </a>
+          
+          <a href="https://wa.me/923180033899" target="_blank" class="social-link" aria-label="WhatsApp">
+            <div class="social-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="social-label">WhatsApp</div>
+            <div class="social-name">+92 318 0033899</div>
+          </a>
+          
+          <a href="https://www.fiverr.com/fahadtariq254?public_mode=true" target="_blank" class="social-link" aria-label="Fiverr Profile">
+            <div class="social-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="social-label">Fiverr</div>
+            <div class="social-name">fahadtariq254</div>
+          </a>
+          
+          <a href="https://maps.app.goo.gl/uPrkjmcAA9RaAkS48" target="_blank" class="social-link" aria-label="Google Maps Location">
+            <div class="social-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="social-label">Location</div>
+            <div class="social-name">GroTech HQ</div>
+          </a>
+          
+          <!-- Social Media -->
+          <a href="https://www.facebook.com/profile.php?id=61575887168649" target="_blank" class="social-link" aria-label="Facebook">
+            <div class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div class="social-label">Facebook</div>
+            <div class="social-name">GroTech Solutions</div>
+          </a>
+          
+          <a href="https://x.com/GroTech234718" target="_blank" class="social-link" aria-label="Twitter/X">
+            <div class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </div>
+            <div class="social-label">Twitter/X</div>
+            <div class="social-name">@GroTech234718</div>
+          </a>
+          
+          <a href="https://www.instagram.com/thegrotech.sol/" target="_blank" class="social-link" aria-label="Instagram">
+            <div class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div class="social-label">Instagram</div>
+            <div class="social-name">@thegrotech.sol</div>
+          </a>
+          
+          <!-- vCard Download -->
+          <a href="#" class="social-link" id="vcardDownload" aria-label="Download vCard">
+            <div class="social-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="social-label">vCard</div>
+            <div class="social-name">Save Contact</div>
+          </a>
+            <!-- PDF Download -->
+            <a href="fahad-business-card.pdf" class="social-link" id="pdfDownload" aria-label="Download Business Card PDF" download style="flex: 1;">
+                <div class="social-icon">
+                <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="social-label">PDF</div>
+                <div class="social-name">Business Card</div>
+            </a>
+        </div>
       </div>
 
-      <!-- Enhanced Tech Stack Progress -->
-      <div class="stack">
-        <div class="row"><div class="label">React & Next.js</div><div class="progress"><i style="--to:94%"></i></div></div>
-        <div class="row"><div class="label">Node.js & Express</div><div class="progress"><i style="--to:89%"></i></div></div>
-        <div class="row"><div class="label">Cloud & DevOps</div><div class="progress"><i style="--to:82%"></i></div></div>
-        <div class="row"><div class="label">Mobile Development</div><div class="progress"><i style="--to:78%"></i></div></div>
-      </div>
-
-    <!-- Enhanced Contact Cards -->
-    <div class="contacts">
-    <div class="contact">
-        <div class="left">
-        <div class="meta">
-            <div class="title">Call</div>
-            <div class="sub">0346-2994190</div>
+      <!-- Enhanced Code Footer -->
+      <footer class="code-footer">
+        <div class="status-indicator">
+          <div class="status-dot"></div>
+          <span class="status-text">AVAILABLE FOR PROJECTS</span>
         </div>
-        </div>
-        <a href="tel:+923462994190" class="right-icon" aria-label="Call Fahad Tariq">
-        <i class="fa-solid fa-phone"></i>
-        </a>
-    </div>
-
-    <div class="contact">
-        <div class="left">
-        <div class="meta">
-            <div class="title">WhatsApp</div>
-            <div class="sub">0318-0033899</div>
-        </div>
-        </div>
-        <a href="https://wa.me/923180033899" target="_blank" rel="noopener" class="right-icon" aria-label="WhatsApp Fahad Tariq">
-        <i class="fa-brands fa-whatsapp"></i>
-        </a>
-    </div>
-
-    <div class="contact">
-        <div class="left">
-        <div class="meta">
-            <div class="title">Email</div>
-            <div class="sub">thegrotech@gmail.com</div>
-        </div>
-        </div>
-        <a href="mailto:thegrotech@gmail.com" class="right-icon" aria-label="Email Fahad Tariq">
-        <i class="fa-solid fa-envelope"></i>
-        </a>
-    </div>
-
-    <div class="contact">
-        <div class="left">
-        <div class="meta">
-            <div class="title">LinkedIn</div>
-            <div class="sub">/in/fahad-tariq-54a0b5134</div>
-        </div>
-        </div>
-        <a href="https://www.linkedin.com/in/fahad-tariq-54a0b5134/" target="_blank" rel="noopener" class="right-icon" aria-label="View LinkedIn Profile">
-        <i class="fa-brands fa-linkedin"></i>
-        </a>
-    </div>
-
-    <div class="contact">
-        <div class="left">
-        <div class="meta">
-            <div class="title">Website</div>
-            <div class="sub">thegrotech.com</div>
-        </div>
-        </div>
-        <a href="https://thegrotech.com/" target="_blank" rel="noopener" class="right-icon" aria-label="Visit GroTech Website">
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
-    </div>
-    </div>
-
-      <!-- Enhanced CTA Section -->
-      <div class="cta">
-        <a class="btn primary" href="mailto:thegrotech@gmail.com?subject=Website%20Development%20Inquiry&body=Hello%20Fahad,%20I%20would%20like%20to%20discuss%20a%20project..." rel="noopener">
-          <i class="fas fa-paper-plane" style="margin-right:8px"></i>Hire / Contact
-        </a>
-        <a class="btn secondary" href="/assets/fahad-business-vcard.vcf" download aria-label="Download vCard">
-          <i class="fas fa-download" style="margin-right:8px"></i>Save Card
-        </a>
-      </div>
-
+      </footer>
     </article>
   </div>
 
-  <!-- Enhanced JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-      // Animate progress bars with staggered delays
-      const fills = document.querySelectorAll('.progress > i');
-      fills.forEach((el, idx)=>{
-        el.style.animationDelay = (idx * 300) + 'ms';
-      });
-
-      // Enhanced vCard generation
-      const vcfLink = document.querySelector('a[download]');
-      if(vcfLink && !vcfLink.href.includes('fahad-business-vcard.vcf')){
-        const vcard = [
-          'BEGIN:VCARD',
-          'VERSION:3.0',
-          'FN:Fahad Tariq',
-          'ORG:GroTech Solutions',
-          'TITLE:Web & App Developer',
-          'TEL;TYPE=CELL,VOICE:+923462994190',
-          'TEL;TYPE=CELL,VOICE:+923180033899',
-          'EMAIL;TYPE=INTERNET,WORK:thegrotech@gmail.com',
-          'EMAIL;TYPE=INTERNET,HOME:fahadasif33@gmail.com',
-          'URL;TYPE=WORK:https://thegrotech.com/',
-          'URL;TYPE=LinkedIn:https://www.linkedin.com/in/fahad-tariq-54a0b5134/',
-          'NOTE:Web & App Developer specializing in React, Node.js, and Cloud solutions',
-          'END:VCARD'
-        ].join('\r\n');
-
-        const blob = new Blob([vcard], {type: 'text/vcard;charset=utf-8'});
-        const url = URL.createObjectURL(blob);
-        vcfLink.href = url;
-        
-        // Clean up URL when page unloads
-        window.addEventListener('beforeunload', () => {
-          URL.revokeObjectURL(url);
-        });
-      }
-
-      // Enhanced image error handling
-      document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('error', function() {
-          this.style.opacity = '0';
-          setTimeout(() => {
-            const parent = this.parentElement;
-            if (parent.classList.contains('avatar')) {
-              parent.innerHTML = '<i class="fas fa-user" style="font-size: 2rem; color: var(--muted)"></i>';
-            } else if (parent.classList.contains('brand-logo')) {
-              parent.innerHTML = '<i class="fas fa-rocket" style="font-size: 1.5rem; color: white"></i>';
-            }
-          }, 300);
-        });
-      });
-
-      // Add interactive hover effects
-      const card = document.querySelector('.card');
-      let isHovering = false;
-      
-      card.addEventListener('mouseenter', () => {
-        isHovering = true;
-        card.style.transform = 'translateY(-8px) scale(1.02)';
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        isHovering = false;
-        card.style.transform = 'translateY(0) scale(1)';
-      });
-    });
-    // Role Typing Animation
-function initRoleTyping() {
-  const roles = [
-    "Full Stack Developer",
-    "Frontend Expert", 
-    "Web & App Developer",
-    "Digital Architect",
-    "UI/UX Designer",
-    "Lead Developer"
-  ];
-  
-  const roleElement = document.getElementById('typingRole');
-  const cursorElement = document.querySelector('.cursor');
-  
-  let currentRoleIndex = 0;
-  let currentCharIndex = 0;
-  let isDeleting = false;
-  let isWaiting = false;
-  
-  function typeRole() {
-    const currentRole = roles[currentRoleIndex];
+<script>
+  // Initialize everything when DOM loads
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize all features
+    createParticles();
+    initTypingAnimation();
+    animateTechStack();
+    setupVCardDownload();
+    setupPDFDownload();
+    initScrollAnimations();
+    setupCopyToClipboard();
     
-    if (isWaiting) {
-      // Wait before starting next cycle
-      setTimeout(() => {
-        isWaiting = false;
-        typeRole();
-      }, 1500);
-      return;
-    }
+    // Network status
+    updateNetworkStatus();
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', updateNetworkStatus);
     
-    if (isDeleting) {
-      // Deleting text
-      roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
-      currentCharIndex--;
+    // Card hover effect
+    initCardHover();
+    
+    // Keyboard shortcuts
+    setupKeyboardShortcuts();
+    
+    // Performance optimization
+    optimizePerformance();
+  });
+
+  // ========== PARTICLE SYSTEM ==========
+  function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    
+    const particleCount = 30;
+    
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'gold-particle';
       
-      if (currentCharIndex === 0) {
-        // Finished deleting, move to next role
-        isDeleting = false;
-        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        setTimeout(typeRole, 500);
-      } else {
-        setTimeout(typeRole, 50);
-      }
-    } else {
-      // Typing text
-      roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
-      currentCharIndex++;
+      // Random properties
+      const size = Math.random() * 4 + 1;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 20;
+      const duration = Math.random() * 10 + 15;
       
-      if (currentCharIndex === currentRole.length) {
-        // Finished typing, wait then start deleting
-        isWaiting = true;
-        isDeleting = true;
-        setTimeout(typeRole, 2000); // Wait 2 seconds before deleting
-      } else {
-        setTimeout(typeRole, 100);
-      }
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${left}vw`;
+      particle.style.animationDelay = `${delay}s`;
+      particle.style.animationDuration = `${duration}s`;
+      
+      particlesContainer.appendChild(particle);
     }
   }
-  
-  // Enhanced typing effect with smooth transitions
-  function enhancedTypeRole() {
-    const currentRole = roles[currentRoleIndex];
-    
-    if (isDeleting) {
-      // Smooth deletion
-      roleElement.textContent = currentRole.substring(0, currentCharIndex - 1);
-      currentCharIndex--;
-      
-      if (currentCharIndex === 0) {
-        isDeleting = false;
-        currentRoleIndex = (currentRoleIndex + 1) % roles.length;
-        
-        // Add a subtle fade effect between roles
-        roleElement.style.opacity = '0';
-        setTimeout(() => {
-          roleElement.style.opacity = '1';
-          setTimeout(typeRole, 300);
-        }, 200);
-      } else {
-        setTimeout(typeRole, Math.random() * 50 + 30); // Random speed for natural feel
-      }
-    } else {
-      // Smooth typing with variable speed
-      roleElement.textContent = currentRole.substring(0, currentCharIndex + 1);
-      currentCharIndex++;
-      
-      if (currentCharIndex === currentRole.length) {
-        // Pause at the end before deleting
-        isDeleting = true;
-        setTimeout(typeRole, 1500);
-      } else {
-        // Variable typing speed for more natural effect
-        const speed = Math.random() * 80 + 50;
-        setTimeout(typeRole, speed);
-      }
-    }
-  }
-  
-  // Start the typing animation after a short delay
-  setTimeout(() => {
-    typeRole();
-  }, 1000);
-}
 
-// Call this in your DOMContentLoaded event
-document.addEventListener('DOMContentLoaded', () => {
-  initRoleTyping();
-  // ... your other initialization code
-});
-// Add PDF download functionality
-document.addEventListener('DOMContentLoaded', () => {
-  // ... your existing code ...
-  
-  // PDF download handler
-  const saveCardBtn = document.querySelector('.btn.secondary');
-  if (saveCardBtn) {
-    saveCardBtn.addEventListener('click', (e) => {
-      // If the href is already set to PDF, let the native download work
-      if (!saveCardBtn.href.includes('.pdf')) {
-        e.preventDefault();
-        
-        // Create a temporary link for download
-        const link = document.createElement('a');
-        link.href = 'fahad-business-card.pdf'; // Make sure this matches your PDF filename
-        link.download = 'Fahad_Tariq_Business_Card.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        // Optional: Show download confirmation
-        const originalText = saveCardBtn.innerHTML;
-        saveCardBtn.innerHTML = '<i class="fas fa-check" style="margin-right:8px"></i>Downloaded!';
+  // ========== TYPING ANIMATION ==========
+  function initTypingAnimation() {
+    const roleElement = document.getElementById('typingRole');
+    if (!roleElement) return;
+    
+    const roles = [
+      "Full Stack Developer",
+      "MERN Stack Developer", 
+      "MEAN Stack Developer",
+      "Kotlin PWA Developer",
+      "Backend Developer",
+      "Frontend Specialist",
+      "Tech Lead"
+    ];
+    
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+
+    function type() {
+      const currentRole = roles[roleIndex];
+      
+      if (isPaused) {
         setTimeout(() => {
-          saveCardBtn.innerHTML = originalText;
+          isPaused = false;
+          isDeleting = true;
+          type();
         }, 2000);
+        return;
+      }
+
+      if (!isDeleting) {
+        roleElement.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+        
+        if (charIndex === currentRole.length) {
+          isPaused = true;
+        }
+      } else {
+        roleElement.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          roleElement.style.color = 'var(--gold)';
+          setTimeout(() => {
+            roleElement.style.color = '';
+          }, 500);
+        }
+      }
+
+      const speed = isDeleting ? 40 : 80 + Math.random() * 40;
+      setTimeout(type, speed);
+    }
+
+    setTimeout(type, 1500);
+  }
+
+  // ========== TECH STACK ANIMATION ==========
+  function animateTechStack() {
+    const stackItems = document.querySelectorAll('.stack-item');
+    
+    stackItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.style.transform = 'translateY(0)';
+        item.style.opacity = '1';
+      }, index * 100);
+      
+      // Add hover effect with progress display
+      item.addEventListener('mouseenter', function() {
+        const progress = this.getAttribute('data-progress');
+        const label = this.querySelector('.stack-label');
+        if (!label) return;
+        
+        const originalText = label.textContent;
+        label.textContent = `${progress}% Mastery`;
+        
+        setTimeout(() => {
+          label.textContent = originalText;
+        }, 1000);
+      });
+    });
+  }
+
+  // ========== VCARD GENERATION ==========
+  function generateVCard() {
+    const vCard = `BEGIN:VCARD
+VERSION:3.0
+FN:Fahad Tariq
+TITLE:Full Stack Developer
+ORG:GroTech Solutions
+TEL;TYPE=CELL,VOICE:+923462994190
+TEL;TYPE=CELL,VOICE:+923180033899
+EMAIL;TYPE=WORK:thegrotech@gmail.com
+URL:https://thegrotech.com
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/fahad-tariq-54a0b5134/
+URL;TYPE=GitHub:https://github.com/thegrotech
+URL;TYPE=Fiverr:https://www.fiverr.com/fahadtariq254
+NOTE:Specialized in MERN/MEAN Stacks, Kotlin PWA, SQL/PostgreSQL.
+X-SOCIALPROFILE;TYPE=facebook:https://www.facebook.com/profile.php?id=61575887168649
+X-SOCIALPROFILE;TYPE=twitter:https://x.com/GroTech234718
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/thegrotech.sol/
+END:VCARD`;
+
+    return vCard;
+  }
+
+  function setupVCardDownload() {
+    const vcardLink = document.getElementById('vcardDownload');
+    if (!vcardLink) return;
+    
+    vcardLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const vCardData = generateVCard();
+      const blob = new Blob([vCardData], { type: 'text/vcard' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Fahad_Tariq_GroTech_Solutions.vcf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      
+      // Clean up
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+      }, 100);
+      
+      // Visual feedback
+      const icon = this.querySelector('.social-icon i');
+      if (!icon) return;
+      
+      const originalIcon = icon.className;
+      icon.className = 'fas fa-check';
+      
+      setTimeout(() => {
+        icon.className = originalIcon;
+      }, 2000);
+    });
+  }
+
+  // ========== PDF DOWNLOAD ==========
+  function setupPDFDownload() {
+    const pdfLink = document.getElementById('pdfDownload');
+    if (!pdfLink) return;
+    
+    pdfLink.addEventListener('click', function(e) {
+      // Only prevent default if we need to show loading state
+      if (this.getAttribute('href') === '#' || !this.getAttribute('href').includes('.pdf')) {
+        e.preventDefault();
+        showPDFStatus(this, 'error', 'PDF coming soon');
+        return;
+      }
+      
+      // Show loading state
+      showPDFStatus(this, 'loading', 'Downloading...');
+      
+      // Simulate download completion
+      setTimeout(() => {
+        showPDFStatus(this, 'success', 'Downloaded!');
+        
+        // Reset after success
+        setTimeout(() => {
+          showPDFStatus(this, 'reset');
+        }, 1500);
+      }, 2000);
+    });
+    
+    function showPDFStatus(element, status, message = '') {
+      const icon = element.querySelector('.social-icon i');
+      const label = element.querySelector('.social-label');
+      const name = element.querySelector('.social-name');
+      
+      if (!icon || !label || !name) return;
+      
+      const originalIcon = icon.className;
+      const originalLabel = label.textContent;
+      const originalName = name.textContent;
+      
+      switch(status) {
+        case 'loading':
+          icon.className = 'fas fa-spinner fa-spin';
+          label.textContent = 'Downloading...';
+          name.textContent = 'Please wait';
+          element.dataset.originalIcon = originalIcon;
+          element.dataset.originalLabel = originalLabel;
+          element.dataset.originalName = originalName;
+          break;
+          
+        case 'success':
+          icon.className = 'fas fa-check';
+          label.textContent = 'Downloaded!';
+          name.textContent = 'Success';
+          break;
+          
+        case 'error':
+          icon.className = 'fas fa-exclamation-circle';
+          label.textContent = 'Coming Soon';
+          name.textContent = 'Check back later';
+          setTimeout(() => {
+            icon.className = element.dataset.originalIcon || originalIcon;
+            label.textContent = element.dataset.originalLabel || originalLabel;
+            name.textContent = element.dataset.originalName || originalName;
+          }, 2000);
+          break;
+          
+        case 'reset':
+          icon.className = element.dataset.originalIcon || originalIcon;
+          label.textContent = element.dataset.originalLabel || originalLabel;
+          name.textContent = element.dataset.originalName || originalName;
+          break;
+      }
+    }
+  }
+
+  // ========== SCROLL ANIMATIONS ==========
+  function initScrollAnimations() {
+    const progressBars = document.querySelectorAll('.progress-fill');
+    if (progressBars.length === 0) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    progressBars.forEach(bar => {
+      bar.style.animationPlayState = 'paused';
+      observer.observe(bar);
+    });
+  }
+
+  // ========== NETWORK STATUS ==========
+  function updateNetworkStatus() {
+    const statusDot = document.querySelector('.status-dot');
+    const statusText = document.querySelector('.status-text');
+    
+    if (!statusDot || !statusText) return;
+    
+    if (navigator.onLine) {
+      statusDot.style.background = 'var(--success)';
+      statusText.textContent = 'AVAILABLE FOR PROJECTS';
+    } else {
+      statusDot.style.background = '#ff4d8d';
+      statusText.textContent = 'OFFLINE - CHECK BACK SOON';
+    }
+  }
+
+  // ========== COPY TO CLIPBOARD ==========
+  function setupCopyToClipboard() {
+    const contactElements = document.querySelectorAll('.social-name');
+    
+    contactElements.forEach(element => {
+      element.style.cursor = 'pointer';
+      element.title = 'Click to copy';
+      
+      element.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        const text = this.textContent;
+        if (!text || text === 'Copied!') return;
+        
+        navigator.clipboard.writeText(text).then(() => {
+          const originalText = this.textContent;
+          const originalColor = this.style.color;
+          
+          this.textContent = 'Copied!';
+          this.style.color = 'var(--gold)';
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.color = originalColor;
+          }, 1500);
+        }).catch(err => {
+          console.error('Failed to copy:', err);
+        });
+      });
+    });
+  }
+
+  // ========== CARD HOVER EFFECT ==========
+  function initCardHover() {
+    const card = document.querySelector('.card');
+    if (!card) return;
+    
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-10px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) scale(1)';
+    });
+  }
+
+  // ========== KEYBOARD SHORTCUTS ==========
+  function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+      // Ctrl+C to copy email
+      if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        navigator.clipboard.writeText('thegrotech@gmail.com').then(() => {
+          const emailLinks = document.querySelectorAll('[href^="mailto"]');
+          emailLinks.forEach(link => {
+            link.style.boxShadow = '0 0 20px var(--gold)';
+            setTimeout(() => {
+              link.style.boxShadow = '';
+            }, 1000);
+          });
+        });
+      }
+      
+      // Ctrl+P to print
+      if (e.ctrlKey && e.key === 'p') {
+        e.preventDefault();
+        window.print();
+      }
+      
+      // Esc to reset animations
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.social-link').forEach(link => {
+          const icon = link.querySelector('.social-icon i');
+          const label = link.querySelector('.social-label');
+          const name = link.querySelector('.social-name');
+          
+          if (link.dataset.originalIcon) {
+            icon.className = link.dataset.originalIcon;
+            label.textContent = link.dataset.originalLabel;
+            name.textContent = link.dataset.originalName;
+          }
+        });
       }
     });
   }
-});
-  </script>
+
+  // ========== PERFORMANCE OPTIMIZATION ==========
+  function optimizePerformance() {
+    // Lazy load images
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.loading = 'lazy';
+    });
+    
+    // Debounce scroll events
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Performance cleanup on scroll end
+      }, 100);
+    });
+  }
+
+  // ========== ERROR HANDLING ==========
+  window.addEventListener('error', function(e) {
+    console.error('Script error:', e.error);
+    // You can add error reporting here
+  });
+
+  // ========== PERFORMANCE MONITORING (Optional) ==========
+  if ('PerformanceObserver' in window) {
+    try {
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.duration > 1000) {
+            console.warn(`Slow loading: ${entry.name} took ${entry.duration}ms`);
+          }
+        }
+      });
+      
+      observer.observe({ entryTypes: ['resource', 'paint', 'largest-contentful-paint'] });
+    } catch (e) {
+      // Silently fail if PerformanceObserver isn't supported
+    }
+  }
+</script>
 </body>
 </html>
